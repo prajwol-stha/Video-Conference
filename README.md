@@ -1,5 +1,5 @@
 # Video Conference App
-An app made using react native integrating Zoom sdk for video conferencing.
+An app made using react native video conferencing.
 
 # Setting up and Running the App
 
