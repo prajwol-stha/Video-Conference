@@ -1,15 +1,30 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Homescreen from './src/screens/Homescreen';
-import { NavigationContainer } from '@react-navigation/native';
+import JoinScreen from './src/screens/JoinScreen';
+import MeetingView from './src/screens/MeetingView';
 
 const Stack = createNativeStackNavigator();
 
-function ScreenStack() {
+function AppStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Homescreen} />
+    <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen 
+        name="Homescreen" 
+        component={Homescreen} 
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen 
+        name="Join" 
+        component={JoinScreen} 
+        options={{ title: 'Join Meeting' }}
+      />
+      <Stack.Screen 
+        name="Meeting" 
+        component={MeetingView} 
+        options={{ headerShown: true }}
+      />
     </Stack.Navigator>
   );
 }
@@ -17,12 +32,9 @@ function ScreenStack() {
 const App = () => {
   return (
     <NavigationContainer>
-      <ScreenStack/>
+      <AppStack />
     </NavigationContainer>
-    
-  )
-}
+  );
+};
 
-export default App
-
-const styles = StyleSheet.create({})
+export default App;
