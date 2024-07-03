@@ -1,8 +1,26 @@
 import React, { useState } from 'react';
 import { SafeAreaView, TouchableOpacity, Text, TextInput, View } from 'react-native';
+import { createMeeting, token } from '../api';
 
-function JoinScreen({ getMeetingId }) {
+export default function JoinScreen({ navigation }) {
   const [meetingVal, setMeetingVal] = useState("");
+
+  const createAndJoinMeeting = async () => {
+    if (!token) {
+      console.log('Token unavailable, please get it from app.videosdk.live');
+      return;
+    }
+    const newMeetingId = await createMeeting({ token });
+    navigation.navigate('Meeting', { meetingId: newMeetingId });
+  };
+
+  const joinExistingMeeting = () => {
+    if (meetingVal) {
+      navigation.navigate('Meeting', { meetingId: meetingVal });
+    } else {
+      console.log('Please enter a valid meeting ID');
+    }
+  };
 
   return (
     <SafeAreaView
@@ -14,7 +32,7 @@ function JoinScreen({ getMeetingId }) {
       }}
     >
       <TouchableOpacity
-        onPress={() => getMeetingId()}
+        onPress={createAndJoinMeeting}
         style={{ backgroundColor: "#11bb22", padding: 12, borderRadius: 6 }}
       >
         <Text style={{ color: "white", alignSelf: "center", fontSize: 18 }}>
@@ -51,7 +69,7 @@ function JoinScreen({ getMeetingId }) {
           marginTop: 14,
           borderRadius: 6,
         }}
-        onPress={() => getMeetingId(meetingVal)}
+        onPress={joinExistingMeeting}
       >
         <Text style={{ color: "white", alignSelf: "center", fontSize: 18 }}>
           Join Meeting
@@ -60,5 +78,3 @@ function JoinScreen({ getMeetingId }) {
     </SafeAreaView>
   );
 }
-
-export default JoinScreen;

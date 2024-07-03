@@ -1,25 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
-import { useMeeting } from '@videosdk.live/react-native-sdk';
+import { useMeeting, useParticipant } from '@videosdk.live/react-native-sdk';
 import ParticipantList from './ParticipantList';
 import ControlsContainer from './ControlsContainer';
 
-function MeetingView() {
-  const { join, leave, toggleWebcam, toggleMic, participants, meetingId } = useMeeting({});
+function MeetingView({ route, navigation }) {
+  const { meetingId } = route.params;
+  const { join, participants} = useMeeting({});
+
+  //here
+  // const { join, leave, toggleWebcam, toggleMic, participants, meetingId } = useMeeting({});
+  // const participantsArrId = [...participants.keys()];
+
+
+  useEffect(() => {
+    if (meetingId) {
+      console.log('Joining meeting:', meetingId);
+      join();
+    }
+  }, [meetingId]);
+
   const participantsArrId = [...participants.keys()];
 
   return (
     <View style={{ flex: 1 }}>
-      {meetingId ? (
-        <Text style={{ fontSize: 18, padding: 12 }}>Meeting Id: {meetingId}</Text>
-      ) : null}
+      <Text style={{ fontSize: 18, padding: 12 }}>Meeting Id: {meetingId}</Text>
       <ParticipantList participants={participantsArrId} />
-      <ControlsContainer
-        join={join}
-        leave={leave}
-        toggleWebcam={toggleWebcam}
-        toggleMic={toggleMic}
-      />
+      {/* <View style={{ padding: 12 }}>
+        <Text 
+          style={{ color: 'blue', textAlign: 'center' }}
+          onPress={() => navigation.navigate('Controls')}
+        >
+          Go to Controls
+        </Text>
+      </View> */}
+      
     </View>
   );
 }
