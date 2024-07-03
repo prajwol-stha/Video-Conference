@@ -1,17 +1,12 @@
 import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
-import { useMeeting, useParticipant } from '@videosdk.live/react-native-sdk';
+import { useMeeting } from '@videosdk.live/react-native-sdk';
 import ParticipantList from './ParticipantList';
 import ControlsContainer from './ControlsContainer';
 
 function MeetingView({ route, navigation }) {
   const { meetingId } = route.params;
-  const { join, participants} = useMeeting({});
-
-  //here
-  // const { join, leave, toggleWebcam, toggleMic, participants, meetingId } = useMeeting({});
-  // const participantsArrId = [...participants.keys()];
-
+  const { join, leave, toggleWebcam, toggleMic, participants } = useMeeting({});
 
   useEffect(() => {
     if (meetingId) {
@@ -22,19 +17,27 @@ function MeetingView({ route, navigation }) {
 
   const participantsArrId = [...participants.keys()];
 
+  const handleLeave = () => {
+    console.log('Leaving meeting');
+    leave();
+    console.log('Navigating to Home');
+    navigation.navigate('Home');
+  };
+
+  if (!navigation) {
+    console.error('Navigation prop is undefined');
+    return <Text>Error: Navigation prop is undefined</Text>;
+  }
+
   return (
-    <View style={{ flex: 1 }}>
-      <Text style={{ fontSize: 18, padding: 12 }}>Meeting Id: {meetingId}</Text>
+    <View style={{ flex: 1,backgroundColor:'#eeeeee' }}>
+      <Text style={{ fontSize: 18, padding: 12,color:"black" }}>Meeting ID: {meetingId}</Text>
       <ParticipantList participants={participantsArrId} />
-      {/* <View style={{ padding: 12 }}>
-        <Text 
-          style={{ color: 'blue', textAlign: 'center' }}
-          onPress={() => navigation.navigate('Controls')}
-        >
-          Go to Controls
-        </Text>
-      </View> */}
-      
+      <ControlsContainer
+        leave={handleLeave}
+        toggleWebcam={toggleWebcam}
+        toggleMic={toggleMic}
+      />
     </View>
   );
 }

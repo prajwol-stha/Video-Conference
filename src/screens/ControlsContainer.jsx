@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import ControlButton from '../components/ControlButton';
 
-function ControlsContainer({ join, leave, toggleWebcam, toggleMic }) {
+function ControlsContainer({ leave, toggleWebcam, toggleMic }) {
   return (
     <View
       style={{
@@ -10,11 +10,11 @@ function ControlsContainer({ join, leave, toggleWebcam, toggleMic }) {
         flexDirection: 'row',
         justifyContent: 'space-between',
       }}>
-      <ControlButton
+      {/* <ControlButton
         onPress={join}
         buttonText={'Join'}
         backgroundColor={'#1178F8'}
-      />
+      /> */}
       <ControlButton
         onPress={toggleWebcam}
         buttonText={'Toggle Webcam'}
