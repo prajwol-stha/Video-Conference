@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SafeAreaView, TouchableOpacity, Text, TextInput, View } from 'react-native';
 import { createMeeting, token } from '../api';
 
-export default function Homescreen({ navigation }) {
+export default function JoinScreen({ navigation }) {
   const [meetingVal, setMeetingVal] = useState("");
 
   const createAndJoinMeeting = async () => {
@@ -10,18 +10,12 @@ export default function Homescreen({ navigation }) {
       console.log('Token unavailable, please get it from app.videosdk.live');
       return;
     }
-    try {
-      const newMeetingId = await createMeeting({ token });
-      console.log('Created meeting:', newMeetingId);
-      navigation.navigate('Meeting', { meetingId: newMeetingId });
-    } catch (error) {
-      console.error('Error creating meeting:', error);
-    }
+    const newMeetingId = await createMeeting({ token });
+    navigation.navigate('Meeting', { meetingId: newMeetingId });
   };
 
   const joinExistingMeeting = () => {
     if (meetingVal) {
-      console.log('Joining meeting:', meetingVal);
       navigation.navigate('Meeting', { meetingId: meetingVal });
     } else {
       console.log('Please enter a valid meeting ID');
