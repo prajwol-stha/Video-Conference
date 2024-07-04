@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import ControlButton from '../components/ControlButton';
+import COLORS from '../styles/colors';
 
 function ControlsContainer({ leave, toggleWebcam, toggleMic }) {
   return (
@@ -18,12 +19,12 @@ function ControlsContainer({ leave, toggleWebcam, toggleMic }) {
       <ControlButton
         onPress={toggleWebcam}
         buttonText={'Toggle Webcam'}
-        backgroundColor={'#1178F8'}
+        backgroundColor={COLORS.PRIMARY}
       />
       <ControlButton
         onPress={toggleMic}
         buttonText={'Toggle Mic'}
-        backgroundColor={'#1178F8'}
+        backgroundColor={COLORS.PRIMARY}
       />
       <ControlButton
         onPress={leave}

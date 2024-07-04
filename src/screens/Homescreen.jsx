@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, TouchableOpacity, Text, TextInput, View } from 'react-native';
 import { createMeeting, token } from '../api';
+import COLORS from '../styles/colors';
 
 export default function Homescreen({ navigation }) {
   const [meetingVal, setMeetingVal] = useState("");
@@ -32,16 +33,16 @@ export default function Homescreen({ navigation }) {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: "#F6F6FF",
+        backgroundColor: COLORS.BACKGROUND,
         justifyContent: "center",
         paddingHorizontal: 60,
       }}
     >
       <TouchableOpacity
         onPress={createAndJoinMeeting}
-        style={{ backgroundColor: "#11bb22", padding: 12, borderRadius: 6 }}
+        style={{ backgroundColor: COLORS.PRIMARY, padding: 12, borderRadius: 6 }}
       >
-        <Text style={{ color: "white", alignSelf: "center", fontSize: 18 }}>
+        <Text style={{ color: COLORS.WHITE, alignSelf: "center", fontSize: 18 }}>
           Create Meeting
         </Text>
       </TouchableOpacity>
@@ -52,7 +53,8 @@ export default function Homescreen({ navigation }) {
           fontSize: 22,
           marginVertical: 16,
           fontStyle: "italic",
-          color: "grey",
+          color:COLORS.GREY,
+          
         }}
       >
         ---------- OR ----------
@@ -61,6 +63,7 @@ export default function Homescreen({ navigation }) {
         value={meetingVal}
         onChangeText={setMeetingVal}
         placeholder={"XXXX-XXXX-XXXX"}
+        placeholderTextColor={COLORS.GREY}
         style={{
           padding: 12,
           borderWidth: 1,
@@ -70,7 +73,7 @@ export default function Homescreen({ navigation }) {
       />
       <TouchableOpacity
         style={{
-          backgroundColor: "#11bb22",
+          backgroundColor: COLORS.PRIMARY,
           padding: 12,
           marginTop: 14,
           borderRadius: 6,
