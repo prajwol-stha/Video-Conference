@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { useParticipant, RTCView, MediaStream } from '@videosdk.live/react-native-sdk';
+import COLORS from '../styles/colors';
 
 function ParticipantView({ participantId }) {
   const { webcamStream, webcamOn } = useParticipant(participantId);
@@ -18,7 +19,7 @@ function ParticipantView({ participantId }) {
   ) : (
     <View
       style={{
-        backgroundColor: "grey",
+        backgroundColor: COLORS.GREY,
         height: 300,
         justifyContent: "center",
         alignItems: "center",

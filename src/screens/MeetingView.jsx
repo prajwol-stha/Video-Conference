@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { useMeeting } from '@videosdk.live/react-native-sdk';
 import ParticipantList from './ParticipantList';
 import ControlsContainer from './ControlsContainer';
+import COLORS from '../styles/colors';
 
 function MeetingView({ route, navigation }) {
   const { meetingId } = route.params;
@@ -30,8 +31,8 @@ function MeetingView({ route, navigation }) {
   }
 
   return (
-    <View style={{ flex: 1,backgroundColor:'#eeeeee' }}>
-      <Text style={{ fontSize: 18, padding: 12,color:"black" }}>Meeting ID: {meetingId}</Text>
+    <View style={{ flex: 1,backgroundColor:COLORS.BACKGROUND }}>
+      <Text selectable style={{ fontSize: 18, padding: 12,color:"black" ,alignSelf:'center'}}>Meeting ID: {meetingId}</Text>
       <ParticipantList participants={participantsArrId} />
       <ControlsContainer
         leave={handleLeave}
