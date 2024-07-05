@@ -37,24 +37,3 @@ const styles = StyleSheet.create({
 });
 
 export default SplashScreen;
-
-
-
-// import { StyleSheet, Text, View } from 'react-native'
-// import React from 'react'
-// import LottieView from 'lottie-react-native';
-
-// const SplashScreen = () => {
-//   return (
-//     <View style={{
-//       
-//     }}>
-//       <Text>SplashScreen</Text>
-//       <LottieView style={{flex:1}} source={require('../assets/loader.json')} autoPlay loop />
-//     </View>
-//   )
-// }
-
-// export default SplashScreen
-
-// const styles = StyleSheet.create({})
