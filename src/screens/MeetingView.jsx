@@ -10,6 +10,19 @@ function MeetingView({ route, navigation }) {
   const { join, leave, toggleWebcam, toggleMic, participants } = useMeeting({});
   const [isJoined, setIsJoined] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  
+  const [isWebcamOn, setIsWebcamOn] = useState(true);
+  const [isMicOn, setIsMicOn] = useState(false);
+
+  const handleToggleWebcam = () => {
+    toggleWebcam();
+    setIsWebcamOn(prev => !prev);
+  };
+
+  const handleToggleMic = () => {
+    toggleMic();
+    setIsMicOn(prev => !prev);
+  };
 
   useEffect(() => {
     if (meetingId) {
@@ -53,8 +66,10 @@ function MeetingView({ route, navigation }) {
 
       <ControlsContainer
         leave={handleLeave}
-        toggleWebcam={toggleWebcam}
-        toggleMic={toggleMic}
+        toggleWebcam={handleToggleWebcam}
+        toggleMic={handleToggleMic}
+        isWebcamOn={isWebcamOn}
+        isMicOn={isMicOn}
       />
     </View>
   );
