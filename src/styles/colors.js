@@ -6,7 +6,7 @@ const COLORS = {
     SECONDARY: '#e1e8e9',
     LIGHT: '#f9f9f9',
     GREY: '#aaaaaa',
-    RED: 'red',
+    RED: '#FF0000',
     TEXT: '#ffffff',
     BACKGROUND: '#F6F6FF',
 }

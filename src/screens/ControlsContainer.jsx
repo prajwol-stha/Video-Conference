@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import ControlButton from '../components/ControlButton';
 import COLORS from '../styles/colors';
 
-function ControlsContainer({ leave, toggleWebcam, toggleMic }) {
+function ControlsContainer({ leave, toggleWebcam, toggleMic, isWebcamOn, isMicOn }) {
   return (
     <View
       style={{
@@ -11,20 +11,15 @@ function ControlsContainer({ leave, toggleWebcam, toggleMic }) {
         flexDirection: 'row',
         justifyContent: 'space-between',
       }}>
-      {/* <ControlButton
-        onPress={join}
-        buttonText={'Join'}
-        backgroundColor={'#1178F8'}
-      /> */}
       <ControlButton
         onPress={toggleWebcam}
-        buttonText={'Toggle Webcam'}
-        backgroundColor={COLORS.PRIMARY}
+        buttonText={isWebcamOn ? 'Turn Off Camera' : 'Turn On Camera'}
+        backgroundColor={isWebcamOn ? COLORS.PRIMARY : COLORS.RED}
       />
       <ControlButton
         onPress={toggleMic}
-        buttonText={'Toggle Mic'}
-        backgroundColor={COLORS.PRIMARY}
+        buttonText={isMicOn ? 'Mute Yourself' : 'Unmute Yourself'}
+        backgroundColor={isMicOn ? COLORS.PRIMARY : COLORS.RED}
       />
       <ControlButton
         onPress={leave}

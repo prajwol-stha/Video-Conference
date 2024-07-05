@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { SafeAreaView, TouchableOpacity, Text, TextInput, View } from 'react-native';
+import { SafeAreaView, TouchableOpacity, Text, TextInput, View, Alert } from 'react-native';
 import { createMeeting, token } from '../api';
 import COLORS from '../styles/colors';
 
 export default function Homescreen({ navigation }) {
-  const [meetingVal, setMeetingVal] = useState("");
+  const [meetingId, setMeetingId] = useState("");
 
   const createAndJoinMeeting = async () => {
     if (!token) {
@@ -21,10 +21,14 @@ export default function Homescreen({ navigation }) {
   };
 
   const joinExistingMeeting = () => {
-    if (meetingVal) {
-      console.log('Joining meeting:', meetingVal);
-      navigation.navigate('Meeting', { meetingId: meetingVal });
+    if (meetingId) {
+      console.log('Joining meeting:', meetingId);
+      navigation.navigate('Meeting', { meetingId: meetingId });
     } else {
+      Alert.alert(
+        "Invalid Meeting ID",
+        "Please enter a valid meeting ID to join.",
+        [{ text: "OK" }])
       console.log('Please enter a valid meeting ID');
     }
   };
@@ -43,7 +47,7 @@ export default function Homescreen({ navigation }) {
         style={{ backgroundColor: COLORS.PRIMARY, padding: 12, borderRadius: 6 }}
       >
         <Text style={{ color: COLORS.WHITE, alignSelf: "center", fontSize: 18 }}>
-          Create Meeting
+          Create New Meeting
         </Text>
       </TouchableOpacity>
 
@@ -57,11 +61,11 @@ export default function Homescreen({ navigation }) {
           
         }}
       >
-        ---------- OR ----------
+        ----- OR -----
       </Text>
       <TextInput
-        value={meetingVal}
-        onChangeText={setMeetingVal}
+        value={meetingId}
+        onChangeText={setMeetingId}
         placeholder={"XXXX-XXXX-XXXX"}
         placeholderTextColor={COLORS.GREY}
         style={{
