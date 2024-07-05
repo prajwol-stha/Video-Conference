@@ -1,0 +1,24 @@
+//There should be an api.js file in this directory, create api.js file and paste the content of this file. For token, you can get it from the DASHBOARD of VIDEOSDK.LIVE after logging in
+
+export const token = "YOUR TOKEN FROM VIDEOSDK LIVE DASHBOARD";
+
+export const createMeeting = async ({ token }) => {
+  try {
+    console.log('Sending request to create meeting...');
+    const res = await fetch(`https://api.videosdk.live/v2/rooms`, {
+      method: "POST",
+      headers: {
+        authorization: token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    });
+    console.log('Received response:', res.status);
+    const data = await res.json();
+    console.log('Response data:', data);
+    return data.roomId;
+  } catch (error) {
+    console.error('Error in createMeeting:', error);
+    throw error;
+  }
+};
