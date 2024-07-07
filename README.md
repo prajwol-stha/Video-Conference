@@ -16,7 +16,7 @@ A Video Conferencing app made using react native and VideoSDK.live.
 
 ### Android
 **Run the following commands in the root folder of the project.**
-Installing the dependencies
+#### Installing the dependencies
 ```bash
   npm install
 ```
